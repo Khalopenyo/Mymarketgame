@@ -60,7 +60,7 @@ let gameInterval;
 let spawnInterval;
 let gameTimer;
 let spawnSpeed = 1000;
-let fallSpeed = 1;
+let fallSpeed = 2;
 let playerName = "";
 let timeLeft = 90;
 
@@ -120,7 +120,7 @@ async function startGame() {
   attempts = 3;
   level = 1;
   spawnSpeed = 1000;
-  fallSpeed = 1;
+  fallSpeed = 2;
   timeLeft = 90;
 
   scoreElem.textContent = score;
@@ -192,10 +192,10 @@ function checkLevelUp() {
 
 function nextLevel() {
   if (level === 2) {
-    fallSpeed = 2;
+    fallSpeed = 3;
     spawnSpeed = 800;
   } else if (level === 3) {
-    fallSpeed = 3;
+    fallSpeed = 4;
     spawnSpeed = 600;
   } else if (level === 4) {
     fallSpeed = 4;
@@ -260,7 +260,7 @@ function endGame() {
   const promo = generatePromoCode();
 
   certName.textContent = playerName;
-  certPrize.textContent = `Ваш счёт: ${score} пончиков! 🍩`;
+  certPrize.textContent = `Ваш счёт: ${score} пончиков! `;
   certPromo.textContent = `Промокод: ${promo}`;
   certDate.textContent = `Дата: ${dateString}`;
   telegramLink.href = `https://t.me/donuts_gamebot?start=${promo}`;
@@ -316,7 +316,7 @@ function generatePromoCode() {
   for (let i = 0; i < 4; i++) {
     code += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  return 'C4-' + code;
+  return 'My-' + code;
 }
 
 function sendPromoToTelegram(promoCode, score, name) {
