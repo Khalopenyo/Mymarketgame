@@ -65,9 +65,9 @@ let playerName = "";
 let timeLeft = 90;
 
 const ponchikImages = [
-  '121.png',
-  '101.png',
-  '33.png',
+  '121.webp',
+  '101.webp',
+  '33.webp',
   '4.png'
 ];
 
