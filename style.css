@@ -1,0 +1,509 @@
+
+
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+
+#gameArea {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+   background:
+
+    url('') no-repeat center center;
+  background-size: cover;
+  font-family: 'Pixelify Sans', monospace;
+  color: #fff8f0;
+}
+
+.ponchik, .badPonchik, .bonus {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  /* animation: fall 3s ease-in infinite; */
+  border-radius: 50%;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0px) scale(1) rotate(0deg);}
+  20% { transform: translateY(100px) scale(1.1) rotate(30deg);}
+  40% { transform: translateY(200px) scale(0.9) rotate(60deg);}
+  60% { transform: translateY(300px) scale(1.1) rotate(120deg);}
+  80% { transform: translateY(400px) scale(1) rotate(180deg);}
+  100% { transform: translateY(100vh) scale(1) rotate(360deg);}
+}
+
+#box {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 120px;
+  height: 60px;
+  margin-left: -60px;
+  background: linear-gradient(to bottom, rgb(254, 127, 22), rgb(122, 68, 202));
+  border-radius: 0;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+}
+
+
+#box.catch {
+  transform: scale(1.2);
+}
+
+#info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 16px;
+  border: 3px solid rgb(122, 68, 202);
+  border-radius: 6px;
+  color: #fff8f0;
+  font-size: 20px;
+  font-family: 'Pixelify Sans', monospace;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+}
+
+
+#startScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    /* linear-gradient(rgba(255,245,230,0.85), rgba(255,245,230,0.85)), */
+    url('');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 2s ease;
+}
+
+#logo {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+#startScreen h1 {
+  font-size: 42px;
+  color: rgb(122, 68, 202);
+  margin-bottom: 10px;
+}
+#startScreen p {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #fff8f0;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.6); /* тень для контраста */
+  background: rgba(0, 0, 0, 0.3);         /* затемнённая подложка */
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+#startScreen button {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #ff4b65, #ff4b65);
+  color: #f8f5f5;
+  border: none;
+  border-radius: 0;
+  padding: 14px 30px; 
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 20px;
+}
+#startScreen button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+#startScreen input {
+  font-family: 'Courier New', monospace;
+  background: #f7f7f7;
+  border: 3px solid #ff4b65; /* фиолетовая рамка */
+  padding: 12px 18px; 
+  font-size: 18px;
+  color: #3b4e4a;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3); /* пиксельная тень */
+  margin: 10px 0;
+  width: 280px;
+  max-width: 90%;
+  border-radius: 0; /* убираем округлости для пиксельного стиля */
+  transition: 0.2s ease-in-out;
+}
+#startScreen input:focus {
+  outline: none;
+  border-color: rgb(254, 127, 22); /* оранжевая подсветка */
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+
+#certificate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff8f0;
+  border: 4px solid rgb(254, 127, 22);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+}
+
+#certificate h2 {
+  color: rgb(122, 68, 202);
+  font-size: 32px;
+}
+
+#certificate p {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+#certificate button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 22px;
+  border-radius: 10px;
+  background: rgb(254, 127, 22);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#certificate button:hover {
+  background: rgb(122, 68, 202);
+}
+
+
+#certificate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#certContainer {
+  position: relative;
+  width: 600px;
+  height: 800px;
+  background: linear-gradient(to bottom, #fff8f0, #ffe0cc);
+  border: 8px solid rgb(254, 127, 22);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+}
+
+#certBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('2875305.png');
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.1;
+}
+
+#certContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+#certContent h1 {
+  color: rgb(122, 68, 202);
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+#certContent h2 {
+  color: rgb(254, 127, 22);
+  font-size: 36px;
+  margin: 20px 0;
+}
+
+#certContent p {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.note {
+  margin-top: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+#certificate button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 22px;
+  border-radius: 10px;
+  background: rgb(254, 127, 22);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#certificate button:hover {
+  background: rgb(122, 68, 202);
+}
+
+
+/* Анимация мигания экрана */
+.flash {
+  animation: flashScreen 0.3s ease;
+}
+
+@keyframes flashScreen {
+  0% { background-color: rgba(255,0,0,0.5); }
+  100% { background-color: transparent; }
+}
+
+/* Анимация мигания текста */
+.flashText {
+  animation: flashTextEffect 0.5s ease;
+}
+
+@keyframes flashTextEffect {
+  0% { color: red; transform: scale(1.2); }
+  100% { color: black; transform: scale(1); }
+}
+
+
+#livesContainer {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.heart {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+  background-size: contain;
+  margin: 0 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.heart.lost {
+  transform: scale(0);
+  opacity: 0;
+}
+
+
+#levelUpMessage {
+  animation: blink 1s ease infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+/* Новый стиль для анимации текста перехода уровня */
+#levelUpMessage {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  animation: none;
+  z-index: 1000;
+}
+
+@keyframes levelUpShow {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  30% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  70% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+/* Анимация живого фона для 3 уровня */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    #box {
+        width: 60px;
+        height: 60px;
+    }
+
+    .ponchik, .bonus {
+        width: 40px;
+        height: 40px;
+    }
+
+    #info {
+        font-size: 16px;
+    }
+
+    #levelUpMessage {
+        font-size: 36px;
+    }
+
+    #startScreen h1 {
+        font-size: 28px;
+    }
+
+    #startScreen input, #startScreen button {
+        font-size: 18px;
+        padding: 10px;
+        margin: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    #box {
+        width: 50px;
+        height: 50px;
+    }
+
+    .ponchik, .bonus {
+        width: 30px;
+        height: 30px;
+    }
+
+    #info {
+        font-size: 14px;
+    }
+
+    #levelUpMessage {
+        font-size: 30px;
+    }
+
+    #startScreen h1 {
+        font-size: 24px;
+    }
+}
+
+
+/* Исправление положения корзины для мобильных */
+@media (max-width: 768px) {
+    #box {
+        position: fixed;
+        bottom: 60px;
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    #box {
+        position: fixed;
+        bottom: 50px;
+        width: 70px;
+        height: 70px;
+    }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 360px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-input {
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-btn.primary {
+  background: #ff5e00;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.95);}
+  to {opacity: 1; transform: scale(1);}
+}
+ 
+.pixel-panel {
+  
+  background-size: cover;
+  width: 400px;           /* можно подогнать по размеру доски */
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 20px;
+  
+}
+
+

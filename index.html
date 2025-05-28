@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>C4</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+<!-- Звуки -->
+<audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/03/30/audio_3f2829b979.mp3?filename=happy-day-110997.mp3" loop></audio>
+<audio id="goodSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_b6b99a0c9a.mp3?filename=correct-2-46134.mp3"></audio>
+<audio id="bonusSound" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_767cd4f2aa.mp3?filename=magic-flash-6690.mp3"></audio>
+
+
+<!-- Экран старта -->
+<div id="startScreen">
+  <img src="ogo.png.webp" alt=" mymarket" id="logo">
+  <!-- <h1>Добро пожаловать в 39 Donuts!</h1> -->
+  <p>Введите телефон и ник в Instagram:</p>
+<div class="pixel-panel">
+  <input type="text" id="phoneNumber" placeholder="+79991234567">
+  <input type="text" id="instagramNick" placeholder="@nickname">
+  <button onclick="startGame()">Начать игру</button>
+</div>
+</div>
+
+<!-- Игровая зона -->
+<div id="gameArea" style="display:none;">
+  <div id="info">
+    <div id="levelUpMessage" style="display:none; font-size:32px; font-weight:bold; color:red; text-align:center; margin-bottom:10px;"></div>
+    Счёт: <span id="score">0</span> |
+    Время: <span id="timer">30</span> сек |
+    Жизни: <div id="livesContainer"></div> |
+    Попытки: <span id="attempts">3</span>
+  </div>
+  <div id="box"></div>
+</div>
+
+<!-- Сертификат -->
+<div id="certificate" style="display:none;">
+  <div id="certContainer">
+    <div id="certBackground"></div>
+    <div id="certContent">
+      <h1>mymarket</h1>
+      <h2>Поздравляем, <span id="certName"></span>!</h2>
+      <p id="certPrize"></p>
+      <p id="certPromo"></p> <!-- ← Добавлен промокод -->
+      <p id="certDate"></p>
+      <p class="note">* Сертификат действителен в течение 24 часов *</p>
+    </div>
+  </div>
+  <button onclick="downloadCertificate()">Скачать сертификат</button>
+
+<!-- Кнопка Telegram -->
+<a id="telegramLink" href="#" target="_blank">
+  <button>Получить приз в Telegram</button>
+</a>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+//   const botUsername = "DonutPrizeBot"; // ← ЗАМЕНИ на имя своего бота
+
+//   // Подключаем к моменту показа сертификата
+//   const certPromoEl = document.getElementById("certPromo");
+//   const telegramBtn = document.getElementById("telegramLink");
+
+//   const observer = new MutationObserver(() => {
+//     const code = certPromoEl.textContent.trim();
+//     if (code.startsWith("DONUT-")) {
+//       telegramBtn.href = `https://t.me/${donuts_gamebot}?start=${code}`;
+//     }
+//   });
+
+//   observer.observe(certPromoEl, { childList: true });
+// </script>
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div id="subscribeModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>🎁 Чтобы получить приз</h2>
+    <p>Подпишитесь на <strong>@mymarket</strong> в Instagram и введите свой настоящий ник.</p>
+    <p style="font-size: 0.9em; color: gray;">
+      ⚠️ Мы не выдаём промокоды фейковым аккаунтам. Только реальные подписчики получают награды 🍩
+    </p>
+
+    <input id="fakeNickInput" type="text" placeholder="@ваш_ник" class="modal-input" oninput="onNickInput()">
+    
+    <div class="modal-buttons">
+      <a href="https://instagram.com/39donuts" target="_blank" class="modal-btn">Перейти к @mymarket</a>
+      <button id="confirmFakeCheckBtn" onclick="closeSubscribeModal()" class="modal-btn primary" disabled>Я подписан</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
